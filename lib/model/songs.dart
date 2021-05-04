@@ -16,5 +16,5 @@ const SONGS = [
     'duration': '4:53',
     'link': 'https://www.youtube.com/watch?v=5_iuNaULT5k',
     'albumArt': 'assets/images/image_2.jpg',
-  }
+  },
 ];

@@ -5,8 +5,8 @@ import '../model/songs.dart';
 class SongsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    final ThemeData themeData = Theme.of(context);
+    // final Size size = MediaQuery.of(context).size;
+    // final ThemeData themeData = Theme.of(context);
 
     return SafeArea(
       child: Scaffold(
@@ -48,143 +48,90 @@ class SongsListScreen extends StatelessWidget {
                       .toList(),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(
-                  top: 14,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.grey[900],
-                ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 14, right: 14, top: 8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Stack(
-                            fit: StackFit.passthrough,
-                            alignment: Alignment.centerLeft,
-                            children: [
-                              IconButton(
-                                icon: Icon(
-                                  Icons.sort_rounded,
-                                  color: Colors.white,
-                                ),
-                                onPressed: () {
-                                  print('small menu');
-                                },
-                              ),
-                              Icon(
-                                Icons.arrow_downward,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10),
-                            child: Row(
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.only(
+                    top: 14,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.grey[900],
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(left: 14, right: 14, top: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Stack(
+                              fit: StackFit.passthrough,
+                              alignment: Alignment.centerLeft,
                               children: [
-                                CircleButtons(
-                                  color: Colors.grey[850],
-                                  child: IconButton(
-                                    icon: Icon(
-                                      Icons.shuffle,
-                                      color: Colors.white,
-                                    ),
-                                    onPressed: () {},
+                                IconButton(
+                                  icon: Icon(
+                                    Icons.sort_rounded,
+                                    color: Colors.white,
                                   ),
+                                  onPressed: () {
+                                    print('small menu');
+                                  },
                                 ),
-                                SizedBox(
-                                  width: 15,
-                                ),
-                                CircleButtons(
-                                  color: Colors.grey[850],
-                                  child: IconButton(
-                                    icon: Icon(
-                                      Icons.play_arrow,
-                                      color: Colors.white,
-                                    ),
-                                    onPressed: () {},
-                                  ),
+                                Icon(
+                                  Icons.arrow_downward,
+                                  color: Colors.white,
+                                  size: 20,
                                 ),
                               ],
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          width: size.width * 0.98,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(22, 10, 10, 10),
-                                child: Row(
-                                  children: [
-                                    Card(
-                                      child: Image.asset(
-                                        'assets/images/image_1.jpg',
-                                        width: 60,
-                                        height: 40,
-                                      ),
-                                      color: Colors.black,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('Kaalpanik/Mayajastai',
-                                            style:
-                                                themeData.textTheme.bodyText1),
-                                        Text(
-                                          'Bartika Eam Rai',
-                                          style: themeData.textTheme.bodyText2,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: size.width * 0.19,
-                                    ),
-                                    IconButton(
-                                      onPressed: () {},
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: Row(
+                                children: [
+                                  CircleButtons(
+                                    color: Colors.grey[850],
+                                    child: IconButton(
                                       icon: Icon(
-                                        Icons.more_vert,
+                                        Icons.shuffle,
                                         color: Colors.white,
                                       ),
+                                      onPressed: () {},
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  CircleButtons(
+                                    color: Colors.grey[850],
+                                    child: IconButton(
+                                      icon: Icon(
+                                        Icons.play_arrow,
+                                        color: Colors.white,
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 100,
-                                ),
-                                child: Divider(
-                                  color: Colors.grey[600],
-                                  height: 10,
-                                ),
-                              ),
-                            ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListView.builder(
+                            physics: BouncingScrollPhysics(),
+                            itemCount: SONGS.length,
+                            itemBuilder: (context, index) => SongsItem(
+                              songsData: SONGS[index],
+                            ),
                           ),
                         ),
-                      ],
-                    ),
-                    // ListView.builder(
-                    //   itemCount: SONGS.length,
-                    //   itemBuilder: (context, index) =>
-                    //       SongsItem(songsData: SONGS[index]),
-                    // ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -202,8 +149,6 @@ class PageOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: 18,
@@ -234,7 +179,7 @@ class SongsItem extends StatelessWidget {
     final ThemeData themeData = Theme.of(context);
 
     return Container(
-      width: size.width * 0.98,
+      // width: size.width * 0.98,
       child: Column(
         children: [
           Padding(
@@ -242,6 +187,7 @@ class SongsItem extends StatelessWidget {
             child: Row(
               children: [
                 Card(
+                  clipBehavior: Clip.antiAlias,
                   child: Image.asset(
                     songsData['albumArt'],
                     width: 60,
@@ -264,7 +210,7 @@ class SongsItem extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  width: size.width * 0.19,
+                  width: 155,
                 ),
                 IconButton(
                   onPressed: () {},
@@ -290,3 +236,9 @@ class SongsItem extends StatelessWidget {
     );
   }
 }
+
+// child: ListView.builder(
+//                           itemCount: SONGS.length,
+//                           itemBuilder: (context, index) =>
+//                               SongsItem(songsData: SONGS[index]),
+//                         ),
